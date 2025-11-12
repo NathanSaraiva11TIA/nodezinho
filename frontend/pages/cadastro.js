@@ -1,3 +1,4 @@
+//começo do cadastro.js
 const button = document.querySelector("button")
 button.onclick = (event) => {
     event.preventDefault()
