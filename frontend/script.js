@@ -1,19 +1,26 @@
-const button = document.querySelector("button")
-const main = document.querySelector("main")
-button.addEventListener("click", searchKrakens)
+function init() {
+    const navUl = document.querySelector("nav ul")
 
-async function searchKrakens() {
-    const person = await fetch("http://localhost:3333").then(response => response.json())
-    
-    person.map((person, index) => {
-        main.innerHTML += `
-            <section>
-                <h2>Nome: ${person.name}</h2>
-                <p>E-mail: ${person.email}</p>
-                <p>Idade: ${person.age} anos</p>
-                <p>Apelido: ${person.nickname}</p>
-            </section>
-            <hr>
+    const user = JSON.parse(sessionStorage.getItem("user"))
+
+    if (user) {
+        navUl.innerHTML += `
+            <li>
+                <h2>Usuário: ${user.name}</h2>
+            </li>
+            <li>
+                <button>Sair</button>
+            </li>
         `
-    })
+
+        return
+    }
+
+    navUl.innerHTML += `
+        <li>
+            <a href="./pages/login/login.html">login</a>
+            </li>
+    `
 }
+
+init()
